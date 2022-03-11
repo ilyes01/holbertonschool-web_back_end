@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-""" lifo-cache """
+""" LIFOCache """
 
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """ class """
+    """ LIFOCache Class """
 
     def __init__(self):
         """ constructor """
@@ -14,7 +14,7 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """
-        dictionary self.cache_data
+        assign to the dictionary self.cache_data
         the item value for the key key
         """
         if key is not None and item is not None:
@@ -30,7 +30,7 @@ class LIFOCache(BaseCaching):
 
     def get(self, key):
         """
-        return value
+        return the value of key in self.cache_data
         """
         if key in self.cache_data:
             return self.cache_data[key]
