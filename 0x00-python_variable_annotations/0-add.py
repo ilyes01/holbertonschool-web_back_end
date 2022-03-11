@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""  function that taks a floats and returnes their sum """
+""" function add """
+
+
 def add(a: float, b: float) -> float:
     """
     function add that
