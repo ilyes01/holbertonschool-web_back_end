@@ -1,2 +1,2 @@
 -- sql scriot that creates an index 
-CREATE INDEX idx_name_first_score ON names(name(1) and score)
+CREATE INDEX idx_name_first_score ON names (name(1), score(1));
