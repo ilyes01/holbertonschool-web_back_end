@@ -1,2 +1,3 @@
 // create database my_db
-CREATE DATABASE my_db 
+create my_db 
+
