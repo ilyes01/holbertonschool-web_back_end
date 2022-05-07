@@ -1,4 +1,4 @@
 // script that insert doc in coll
-db.school.insert(
-{name: Holberton school})
+db.school.insertOne(
+{name: "Holberton school"})
 
