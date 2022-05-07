@@ -1,0 +1,2 @@
+// script that display all doc in the collection 
+db.school.find()
