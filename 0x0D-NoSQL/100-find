@@ -1,0 +1,2 @@
+//a mongo script lists docs with name
+db.school.find({name: {$regex: /^Holberton/}})
