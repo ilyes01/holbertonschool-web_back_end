@@ -1,20 +1,12 @@
-const readline = require('readline');
+#!/bin/env node
+var readline = require('readline');
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-});
+var rl = readline.createInterface(
+        process.stdin, process.stdout);
 
-console.log('Welcome to Holberton School, what is your name?');
-
-rl.question('', (name) => {
+rl.setPrompt(`What is your name?\n`);
+rl.prompt();
+rl.on('line', (name) => {
     console.log(`Your name is: ${name}`);
     rl.close();
 });
-
-rl.on("close", () => {
-    console.log("This important software is now closing");
-    process.exit(0);
-});
-
