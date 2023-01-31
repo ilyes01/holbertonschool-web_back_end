@@ -6,7 +6,11 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+LANGUAGE_CODE = 'en-us'
 
+TIME_ZONE = 'UTC'
+
+local = 'en'
 @app.route('/')
 def hello():
     """ render a html file """
