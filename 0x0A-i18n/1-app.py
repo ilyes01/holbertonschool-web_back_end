@@ -3,14 +3,15 @@
 
 
 from flask import Flask, render_template
-
+from flask_babel import Babel
 app = Flask(__name__)
 
+class Config:
+"""configclass"""
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 local = 'en'
+
 @app.route('/')
 def hello():
     """ render a html file """
