@@ -33,7 +33,11 @@ class Cache:
     :param fn: Optional callable to be used to convert the data back to the original data type.
     :return: The original data type of the value retrieved from Redis.
     """
-    return fn(self._redis.get(key)) if fn else self._redis.get(key)
+        if fn:
+            try:
+                return fn(self._redis.get(key)) if fn else self._redis.get(key)
+            except ValueError:
+                raise ValueError("Cannot convert {value} to desired type.")
 
     def get_str(self, value: bytes) -> str:
     """
