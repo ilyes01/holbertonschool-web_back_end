@@ -37,7 +37,7 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     """Determines the best match between the client's
- preferred languages and our supported languages"""
+    languages and our supported languages"""
 
     # Use request.accept_languages to get a list of the client's
     return request.accept_languages.best_matches(app.config['LANGUAGES'])
@@ -53,5 +53,6 @@ def welcome():
 
 
 if __name__ == '__main__':
+    """main"""
     # Run the Flask application
     app.run()
