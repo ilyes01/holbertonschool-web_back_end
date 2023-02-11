@@ -8,7 +8,7 @@ from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
 # Create a Flask application instance
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Define a Config class for the Babel object
 class Config(object):
@@ -38,6 +38,6 @@ def welcome():
     return render_template('1-index.html')
 
 # Check if the script is run as the main program (as opposed to being imported as a module)
-if _name_ == '_main_':
+if __name__ == '__main__':
     # Run the Flask application
     app.run()
