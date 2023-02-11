@@ -40,8 +40,7 @@ def get_locale():
  preferred languages and our supported languages"""
 
     # Use request.accept_languages to get a list of the client's
-    client_languages = request.accept_languages.best_matches(
-                       app.config['LANGUAGES'])
+    client_languages = request.accept_languages.best_matches(app.config['LANGUAGES'])
 
     # If the client's preferred languages
     if client_languages:
