@@ -11,6 +11,8 @@ from flask_babel import Babel
 app = Flask(__name__)
 
 # Define a Config class for the Babel object
+
+
 class Config(object):
     """ Config class """
 
@@ -24,6 +26,8 @@ class Config(object):
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 # Apply the Config object as the configuration for the Flask application
+
+
 app.config.from_object(Config)
 
 # Create a Babel object and initialize it with the Flask application
@@ -37,7 +41,9 @@ def welcome():
     # Render the '1-index.html' template file
     return render_template('1-index.html')
 
-# Check if the script is run as the main program (as opposed to being imported as a module)
+# Check if the script is run as the main program
+
+
 if __name__ == '__main__':
     # Run the Flask application
     app.run()
