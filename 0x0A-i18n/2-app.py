@@ -2,7 +2,6 @@
 """ flask app"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-import hashbang import command
 
 """Create a Flask application instance"""
 app = Flask(__name__)
@@ -33,7 +32,6 @@ babel = Babel(app)
 
 """get_locale function to determine the best match between the client's"""
 
-@command
 @babel.localeselector
 def get_locale():
     """ Use request.accept_languages to get a list of the client's"""
@@ -53,4 +51,4 @@ def welcome():
 
 
 if __name__ == '__main__':
-    get_locale.execute()
+    app.run()
