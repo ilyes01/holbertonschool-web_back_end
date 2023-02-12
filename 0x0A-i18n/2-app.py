@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """ flask app"""
-
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
@@ -34,9 +33,6 @@ babel = Babel(app)
 """get_locale function to determine the best match between the client's"""
 @babel.localeselector
 def get_locale():
-    """Determines the best match between the client's
-    languages and our supported languages"""
-
     """ Use request.accept_languages to get a list of the client's"""
     return request.accept_languages.best_matches(app.config['LANGUAGES'])
 
