@@ -32,6 +32,7 @@ babel = Babel(app)
 
 """get_locale function to determine the best match between the client's"""
 
+
 @babel.localeselector
 def get_locale():
     """ Use request.accept_languages to get a list of the client's"""
