@@ -4,7 +4,7 @@ from typing import Dict
 from pymongo.collection import Collection
 
 
-def insert_school(mongo_collection: Collection, **kwargs: Dict) -> str:
+def insert_school(mongo_collection: Collection, **kwargs):
     """ function that insert dociment"""
     result = mongo_collection.insert_one(kwargs)
-    return str(result.inserted_id)
+    return result.inserted_id
