@@ -8,4 +8,3 @@ export default function handleResponseFromAPI(promise) {
     .catch(() => errorResponse)
     .finally(logResponse);
 }
-
