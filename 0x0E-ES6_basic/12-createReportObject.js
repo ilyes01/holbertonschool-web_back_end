@@ -1,4 +1,3 @@
-
 function createReportObject(employeesList) {
   const obj = {
     allEmployees: {
@@ -6,7 +5,7 @@ function createReportObject(employeesList) {
     },
     getNumberOfDepartments() {
       return Object.keys(this.allEmployees).length;
-    }
+    },
   };
   return obj;
 }
