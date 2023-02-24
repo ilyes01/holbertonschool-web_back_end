@@ -5,7 +5,7 @@ function getListStudents() {
     { id: 5, firstName: 'Serena', location: 'San Francisco' },
   ];
 
-  return students;
+  return (students);
 }
 
 export default getListStudents;
