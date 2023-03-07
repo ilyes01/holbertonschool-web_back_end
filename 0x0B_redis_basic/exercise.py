@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import redis
+import functools
 import uuid
 from typing import Callable, Union
 from functools import wraps
-
 
 class Cache:
     def __init__(self):
@@ -24,7 +24,7 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable[[Union[str, bytes, int, float]], Union[str, bytes, int, float]] = None) -> Union[str, bytes, int, float, None]:
+    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float, None]:
         data = self._redis.get(key)
         if data is None:
             return None
