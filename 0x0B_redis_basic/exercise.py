@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 import redis
-import functools
+import uuid
 from typing import Callable, Union
 from functools import wraps
+
 
 class Cache:
     def __init__(self):
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def count_calls(method: Callable) -> Callable:
-    key = method.__qualname__
-
-    @wraps(method)
-    def wrapper(self, *args, **kwargs):
-        self._redis.incr(key)
-        return method(self, *args, **kwargs)
-    return wrapper
+    def count_calls(method: Callable[..., Union[str, bytes, int, float]]) -> Callable[..., Union[str, bytes, int, float]]:
+        @wraps(method)
+        def wrapper(self, *args, **kwargs) -> Union[str, bytes, int, float]:
+            key = method.__qualname__
+            self._redis.incr(key)
+            return method(self, *args, **kwargs)
+        return wrapper
 
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
@@ -24,7 +24,7 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float, None]:
+    def get(self, key: str, fn: Callable[[Union[str, bytes, int, float]], Union[str, bytes, int, float]] = None) -> Union[str, bytes, int, float, None]:
         data = self._redis.get(key)
         if data is None:
             return None
