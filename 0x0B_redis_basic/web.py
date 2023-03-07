@@ -19,6 +19,7 @@ def track_count(url):
 
 
 def cached_page(fn):
+    """ caching  """
     @wraps(fn)
     def wrapper(url):
         content = redis_cache.get(url)
