@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
-import uuid
 import redis
-from typing import Callable, Union
+import functools
+from typing import Callable
 
 class Cache:
     def __init__(self):
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Union[str, bytes, int, float]) -> str:
+    @staticmethod
+    def count_calls(func: Callable) -> Callable:
+        @functools.wraps(func)
+        def wrapper(self, *args, **kwargs):
+            key = func.__qualname__
+            self._redis.incr(key)
+            return func(self, *args, **kwargs)
+        return wrapper
+
+    @count_calls
+    def store(self, data):
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
