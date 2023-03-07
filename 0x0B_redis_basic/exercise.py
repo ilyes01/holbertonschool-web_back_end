@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import redis
 import functools
-from typing import Callable
+from typing import Callable, Union
 from functools import wraps
 
 class Cache:
@@ -11,8 +11,10 @@ class Cache:
 
     @staticmethod
     def count_calls(method: Callable) -> Callable:
+    key = method.__qualname__
+
+    @wraps(method)
     def wrapper(self, *args, **kwargs):
-        key = method.__qualname__
         self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
