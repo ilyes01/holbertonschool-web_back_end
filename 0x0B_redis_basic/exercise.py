@@ -9,7 +9,6 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    @staticmethod
     def count_calls(method: Callable) -> Callable:
     key = method.__qualname__
 
