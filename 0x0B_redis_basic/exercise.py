@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import redis
 import functools
-import uuid
+import json
 from typing import Callable, Union
 from functools import wraps
 
@@ -10,15 +10,30 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def count_calls(method: Callable[..., Union[str, bytes, int, float]]) -> Callable[..., Union[str, bytes, int, float]]:
+    def count_calls(method: Callable) -> Callable:
+        key = method.__qualname__
+
         @wraps(method)
-        def wrapper(self, *args, **kwargs) -> Union[str, bytes, int, float]:
-            key = method.__qualname__
+        def wrapper(self, *args, **kwargs):
             self._redis.incr(key)
             return method(self, *args, **kwargs)
         return wrapper
 
+    def call_history(method: Callable) -> Callable:
+        key = method.__qualname__
+
+        @wraps(method)
+        def wrapper(self, *args, **kwargs):
+            inputs_key = f"{key}:inputs"
+            outputs_key = f"{key}:outputs"
+            self._redis.rpush(inputs_key, json.dumps(args))
+            output = method(self, *args, **kwargs)
+            self._redis.rpush(outputs_key, json.dumps(output))
+            return output
+        return wrapper
+
     @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
