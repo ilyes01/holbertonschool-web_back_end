@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ documents module """
+import pymongo
 def top_students(mongo_collection):
+"""list"""
     pipeline = [
         {"$unwind": "$topics"},
         {"$group": {
