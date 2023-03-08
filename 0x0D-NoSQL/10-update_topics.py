@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Update topics for a document(s) module """
 
-def update_document_topics(mongo_collection, name, topics):
+def update_topics(mongo_collection, name, topics):
     """
     Update the 'topics' field for document(s) in the MongoDB collection with the
     provided 'document_name' with the given 'topics' list.
