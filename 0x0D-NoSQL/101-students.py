@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-""" documents module """
+""" Top students module """
 import pymongo
+
+
 def top_students(mongo_collection):
-"""list"""
+    """ Return all students sorted by average score """
     pipeline = [
         {"$unwind": "$topics"},
         {"$group": {
@@ -12,4 +14,4 @@ def top_students(mongo_collection):
         }},
         {"$sort": {"averageScore": -1}}
     ]
-    return list(mongo_collection.aggregate(pipeline))
+    return mongo_collection.aggregate(pipeline)
