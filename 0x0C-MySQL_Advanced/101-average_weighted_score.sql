@@ -1,3 +1,5 @@
+-- comments 
+-- coments 
 DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()
 BEGIN
