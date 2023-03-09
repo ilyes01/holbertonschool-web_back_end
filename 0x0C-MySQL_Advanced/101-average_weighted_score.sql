@@ -1,4 +1,4 @@
-DELIMITER //
+DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()
 BEGIN
     DECLARE total_weighted_score FLOAT DEFAULT 0;
@@ -39,5 +39,5 @@ BEGIN
         UPDATE users SET average_score = total_weighted_score / total_weight WHERE id = user_id;
     END LOOP;
     CLOSE user_cursor;
-END //
+END $$
 DELIMITER ;
