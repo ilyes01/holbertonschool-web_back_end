@@ -1,9 +1,10 @@
-export default function getStudentIdsSum(students) {
-  let sum = 0;
-  if (Array.isArray(students)) {
-    for (let i = 0; i < students.length; i += 1) { // use i += 1 instead of i++
-      sum += students[i].id;
-    }
+export default function updateStudentGradeByCity(students, city, newGrades) {
+  if (!Array.isArray(students)) {
+    return [];
   }
-  return sum;
+  const updatedStudents = students.filter((student) => student.location === city).map((student) => {
+    const grade = newGrades.find((grade) => grade.studentId === student.id);
+    return grade !== undefined ? { ...student, grade: grade.grade } : { ...student, grade: 'N/A' };
+  });
+  return updatedStudents.length > 0 ? updatedStudents : 0;
 }
